@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Weather App Project JavaScript</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js" defer></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body class="bg-cover bg-center bg-no-repeat" style="background-image: url('./bg.jpg')">
+    <h1
+        class="bg-white/10 backdrop-blur-lg border-2 border-white/20 text-center text-xl md:text-2xl p-4 text-white font-bold mb-4">
+        WeatherScope
+    </h1>
+    <div class="container mx-auto flex flex-col md:flex-row gap-8 p-8">
+        <div class="weather-input w-full md:w-2/5">
+            <h3 class="text-white mb-2 font-bold">Enter a City Name</h3>
+            <input
+                class="city-input w-full h-12 text-base p-4 rounded-md bg-white/10 backdrop-blur-lg border-2 border-white/20 text-white mb-4 focus:outline-none focus:border-white/40 placeholder:text-white "
+                type="text" placeholder="E.g., Mumbai, Delhi, Chennai">
+            <button
+                class="search-btn w-full py-3 text-xl rounded-md bg-white/10 backdrop-blur-lg border-2 border-white/20 text-white hover:bg-white/60 transition ease-in-out mb-4"><i
+                    class='bx bx-search'></i></button>
+            <button
+                class="location-btn w-full py-3 text-xl rounded-md bg-white/10 backdrop-blur-lg border-2 border-white/20 text-white hover:bg-white/60 transition ease-in-out"><i
+                    class='bx bx-current-location'></i></button>
+            <div id="recentCitiesContainer" class="hidden mt-4">
+                <h3 class="text-white mb-2 font-bold">Recently Searched Cities</h3>
+                <select id="recentCities"
+                    class="w-full p-2 text-xl bg-white/10 backdrop-blur-lg border-2 border-white/20 text-white rounded-md"></select>
+            </div>
+        </div>
+        <div class="weather-data w-full">
+            <div
+                class="current-weather flex justify-between items-center p-4 bg-white/10 backdrop-blur-lg border-2 border-white/20 rounded-md text-white">
+                <div class="details">
+                    <h2 class="font-bold text-2xl">City ( YY-MM-DD )</h2>
+                    <h6 class="mt-2 text-lg">Temperature: 0°C</h6>
+                    <h6 class="mt-2 text-lg">Wind: 0 M/S</h6>
+                    <h6 class="mt-2 text-lg">Humidity: 0%</h6>
+                </div>
+                <div class="icon text-center">
+                    <img src="https://openweathermap.org/img/wn/01d@4x.png" alt="weather-icon"
+                        class="max-w-[120px] -mt-4">
+                    <h6 class="-mt-2 capitalize">Clear sky</h6>
+                </div>
+            </div>
+            <div class="days-forecast mt-8">
+                <h2 class="text-white text-2xl mb-4">5-Day Forecast</h2>
+                <ul class="weather-cards flex flex-wrap gap-4">
+                    <li
+                        class="card flex-1 p-4 bg-white/10 backdrop-blur-lg border-2 border-white/20 rounded-md text-white">
+                        <h3 class="font-semibold text-lg mb-2">( YY-MM-DD )</h3>
+                        <h6 class="text-base">Temp: 0°C</h6>
+                        <h6 class="text-base">Wind: 0 M/S</h6>
+                        <h6 class="text-base">Humidity: 0%</h6>
+                    </li>
+                    <li
+                        class="card flex-1 p-4 bg-white/10 backdrop-blur-lg border-2 border-white/20 rounded-md text-white">
+                        <h3 class="font-semibold text-lg mb-2">( YY-MM-DD )</h3>
+                        <h6 class="text-base">Temp: 0°C</h6>
+                        <h6 class="text-base">Wind: 0 M/S</h6>
+                        <h6 class="text-base">Humidity: 0%</h6>
+                    </li>
+                    <li
+                        class="card flex-1 p-4 bg-white/10 backdrop-blur-lg border-2 border-white/20 rounded-md text-white">
+                        <h3 class="font-semibold text-lg mb-2">( YY-MM-DD )</h3>
+                        <h6 class="text-base">Temp: 0°C</h6>
+                        <h6 class="text-base">Wind: 0 M/S</h6>
+                        <h6 class="text-base">Humidity: 0%</h6>
+                    </li>
+                    <li
+                        class="card flex-1 p-4 bg-white/10 backdrop-blur-lg border-2 border-white/20 rounded-md text-white">
+                        <h3 class="font-semibold text-lg mb-2">( YY-MM-DD )</h3>
+                        <h6 class="text-base">Temp: 0°C</h6>
+                        <h6 class="text-base">Wind: 0 M/S</h6>
+                        <h6 class="text-base">Humidity: 0%</h6>
+                    </li>
+                    <li
+                        class="card flex-1 p-4 bg-white/10 backdrop-blur-lg border-2 border-white/20 rounded-md text-white">
+                        <h3 class="font-semibold text-lg mb-2">( YY-MM-DD )</h3>
+                        <h6 class="text-base">Temp: 0°C</h6>
+                        <h6 class="text-base">Wind: 0 M/S</h6>
+                        <h6 class="text-base">Humidity: 0%</h6>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
