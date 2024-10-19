@@ -24,20 +24,20 @@ This is a simple weather application that shows the current weather based on the
 
 2. Install dependencies: Ensure you are in the project directory and run:
 
-npm install
+   npm install
 
-3.Configure Tailwind: The TailwindCSS configuration is done via the tailwind.config.js file. Tailwind is already set up to generate a custom CSS file based on your project needs. You can modify the tailwind.config.js file to customize the theme and add additional styles if required.
+3. Configure Tailwind: The TailwindCSS configuration is done via the tailwind.config.js file. Tailwind is already set up to generate a custom CSS file based on your project needs. You can modify the tailwind.config.js file to customize the theme and add additional styles if required.
 
-4.API Setup: Open the script.js file and locate the line where the weather API is being called. Insert your API key in the appropriate place:
+4. API Setup: Open the script.js file and locate the line where the weather API is being called. Insert your API key in the appropriate place:
 
-const API_KEY = 'YOUR_API_KEY';  // Replace 'YOUR_API_KEY' with your actual API key
+   const API_KEY = 'YOUR_API_KEY';  // Replace 'YOUR_API_KEY' with your actual API key
 
-5.Run the project: After setting up the API key and Tailwind, you can run the project:
+5. Run the project: After setting up the API key and Tailwind, you can run the project:
 
 npm run start
 This command will start a development server and open the app in your default browser.
 
-6.Build for production: To build the project for production, use the following command:
+6. Build for production: To build the project for production, use the following command:
 
 npm run build
 This will create the production-ready files in the dist/ directory.
