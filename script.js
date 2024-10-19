@@ -7,9 +7,9 @@ const recentCitiesContainer = document.getElementById("recentCitiesContainer");
 const recentCitiesSelect = document.getElementById("recentCities");
 
 const API_KEY = "af9f93ff0061995f4964fd04fbbec6c7";
-
+// createWeatherCard function create main weather and forecast weather cards
 function createWeatherCard(cityName, weatherItem, index) {
-    if (index === 0) { // HTML for the main weather card
+    if (index === 0) { // current weather 
         return `
     
                 
@@ -35,7 +35,7 @@ function createWeatherCard(cityName, weatherItem, index) {
                 </li>`;
     }
 }
-
+// using navigator.geolocation , user got it cityname , lat , long , using this we show the current and forecast div 
 function getWeatherDetails(cityName, latitude, longitude) {
     const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
 
@@ -43,17 +43,19 @@ function getWeatherDetails(cityName, latitude, longitude) {
         .then(function (response) { return response.json(); })
         .then(function (data) {
             const uniqueForecastDays = [];
+            // Filter the forecast data to get unique days
             const fiveDaysForecast = data.list.filter(function (forecast) {
                 const forecastDate = new Date(forecast.dt_txt).getDate();
                 if (!uniqueForecastDays.includes(forecastDate)) {
                     return uniqueForecastDays.push(forecastDate);
                 }
             });
+            //      here  clear previous input and weather display areas
 
             cityInput.value = "";
             currentWeatherDiv.innerHTML = "";
             weatherCardsDiv.innerHTML = "";
-
+            // here if index = 0 then current weather update else forecast updated
             fiveDaysForecast.forEach(function (weatherItem, index) {
                 const html = createWeatherCard(cityName, weatherItem, index);
                 if (index === 0) {
@@ -67,7 +69,7 @@ function getWeatherDetails(cityName, latitude, longitude) {
             alert("An error occurred while fetching the weather forecast!");
         });
 }
-
+//  Function getCityCoordinates to fetch city coordinates (lat, lon) based on city name
 function getCityCoordinates(cityName = null) {
     cityName = cityName || cityInput.value.trim();
 
@@ -76,7 +78,7 @@ function getCityCoordinates(cityName = null) {
         return;
     }
 
-    console.log("The city being searched is: ", cityName);
+    // console.log("The city being searched is: ", cityName);
 
     const API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
 
@@ -89,7 +91,7 @@ function getCityCoordinates(cityName = null) {
             }
             const { lat, lon, name } = data[0];
             getWeatherDetails(name, lat, lon);
-            addCityToLocalStorage(cityName);
+            addCityToLocalStorage(cityName); // Add city to recent cities in local storage
         })
         .catch(function () {
             alert("An error occurred while fetching the coordinates!");
@@ -105,11 +107,13 @@ cityInput.addEventListener("keyup", function (e) {
 function getUserCoordinates() {
     navigator.geolocation.getCurrentPosition(
         function (position) {
+            // here destructuring the position coordinates these latitude, longitude help in getting user's exact location 
             const { latitude, longitude } = position.coords;
             const API_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
             fetch(API_URL)
                 .then(function (response) { return response.json(); })
                 .then(function (data) {
+                    // here we destructuring , getting name of the current city  using coordinates 
                     const { name } = data[0];
                     getWeatherDetails(name, latitude, longitude);
                 })
@@ -129,6 +133,7 @@ function getUserCoordinates() {
 
 locationButton.addEventListener("click", getUserCoordinates);
 
+// addCityToLocalStorage as name suggest this fun push cities to recentCities , and stored in local storage 
 function addCityToLocalStorage(city) {
     let cities = JSON.parse(localStorage.getItem('recentCities')) || [];
 
@@ -139,8 +144,10 @@ function addCityToLocalStorage(city) {
 
     populateDropdown();
 }
-
+// populateDropdown() populate the recent cities if any data in local storage it will fetch 
+// if data array length greater >0 means data is present so  display none becomes display block all stored cities display to the user , else diplay none 
 function populateDropdown() {
+
     let cities = JSON.parse(localStorage.getItem('recentCities')) || [];
 
     if (cities.length > 0) {
@@ -157,14 +164,17 @@ function populateDropdown() {
         recentCitiesContainer.style.display = 'none';
     }
 }
-
+// this event listener will trigger  when any value city select from drop down menu if city is present , it will send
+//to getCityCoordinates  
 recentCitiesSelect.addEventListener('change', function () {
     const city = recentCitiesSelect.value;
     if (city) {
+
         getCityCoordinates(city);
     }
 });
 
+// when browser starts this method will automatically runs 
 window.onload = function () {
     populateDropdown();
 };
