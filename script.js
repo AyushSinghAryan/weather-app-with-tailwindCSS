@@ -20,9 +20,9 @@ function createWeatherCard(cityName, weatherItem, index) {
                     <h6 class="mt-2 text-lg">Humidity: ${weatherItem.main.humidity}%</h6>
                 </div>
                 <div class="icon text-center">
-                    <img src="https://openweathermap.org/img/wn/01d@4x.png" alt="weather-icon"
+                    <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@4x.png" alt="weather-icon"
                         class="max-w-[120px] -mt-4">
-                    <h6 class="-mt-2 capitalize">Clear sky</h6>
+                    <h6 class="-mt-2 capitalize">${weatherItem.weather[0].description}</h6>
                 </div>
                 `;
     } else { // HTML for the other five day forecast card
