@@ -24,7 +24,7 @@ This is a simple weather application that shows the current weather based on the
 
 2. Install dependencies: Ensure you are in the project directory and run:
 
-   npm install
+npm install
 
 3. Configure Tailwind: The TailwindCSS configuration is done via the tailwind.config.js file. Tailwind is already set up to generate a custom CSS file based on your project needs. You can modify the tailwind.config.js file to customize the theme and add additional styles if required.
 
